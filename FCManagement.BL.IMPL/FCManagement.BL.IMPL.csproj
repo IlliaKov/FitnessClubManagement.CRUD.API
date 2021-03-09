@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FCManagement.BL.ABSTRACT\FCManagement.BL.ABSTRACT.csproj" />
+    <ProjectReference Include="..\FCManagement.DAL.ABSTRACT\FCManagement.DAL.ABSTRACT.csproj" />
+    <ProjectReference Include="..\FCManagement.Entities\FCManagement.Entities.csproj" />
+    <ProjectReference Include="..\FCManagement.Models\FCManagement.Models.csproj" />
+  </ItemGroup>
+
+</Project>
