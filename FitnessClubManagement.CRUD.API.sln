@@ -5,7 +5,11 @@ VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessClubManagement.CRUD.API", "FitnessClubManagement.CRUD.API\FitnessClubManagement.CRUD.API.csproj", "{54C485AD-6BE7-4ECF-9CD4-BC93C37EC2E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessClubManagement.CRUD.API.Entities", "FitnessClubManagement.CRUD.API.Entities\FitnessClubManagement.CRUD.API.Entities.csproj", "{4000D937-951E-4BEE-B0EA-F7F97741846C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCManagement.DAL.ABSTRACT", "FCManagement.DAL.ABSTRACT\FCManagement.DAL.ABSTRACT.csproj", "{4796ABC6-2F1F-4681-B66D-739870DCB6DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCManagement.Entities", "FCManagement.Entities\FCManagement.Entities.csproj", "{AEC5477E-2AF1-4E48-B28F-C4D2DF74B37F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCManagement.DAL.IMPL", "FCManagement.DAL.IMPL\FCManagement.DAL.IMPL.csproj", "{58DD4942-37E2-4D09-9D43-2D65BD5BA3D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +21,18 @@ Global
 		{54C485AD-6BE7-4ECF-9CD4-BC93C37EC2E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54C485AD-6BE7-4ECF-9CD4-BC93C37EC2E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54C485AD-6BE7-4ECF-9CD4-BC93C37EC2E0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4000D937-951E-4BEE-B0EA-F7F97741846C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4000D937-951E-4BEE-B0EA-F7F97741846C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4000D937-951E-4BEE-B0EA-F7F97741846C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4000D937-951E-4BEE-B0EA-F7F97741846C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4796ABC6-2F1F-4681-B66D-739870DCB6DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4796ABC6-2F1F-4681-B66D-739870DCB6DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4796ABC6-2F1F-4681-B66D-739870DCB6DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4796ABC6-2F1F-4681-B66D-739870DCB6DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEC5477E-2AF1-4E48-B28F-C4D2DF74B37F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEC5477E-2AF1-4E48-B28F-C4D2DF74B37F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEC5477E-2AF1-4E48-B28F-C4D2DF74B37F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEC5477E-2AF1-4E48-B28F-C4D2DF74B37F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58DD4942-37E2-4D09-9D43-2D65BD5BA3D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58DD4942-37E2-4D09-9D43-2D65BD5BA3D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58DD4942-37E2-4D09-9D43-2D65BD5BA3D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58DD4942-37E2-4D09-9D43-2D65BD5BA3D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

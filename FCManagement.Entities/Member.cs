@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FitnessClubManagement.CRUD.API.Entities
+namespace FCManagement.Entities
 {
     public class Member
     {
