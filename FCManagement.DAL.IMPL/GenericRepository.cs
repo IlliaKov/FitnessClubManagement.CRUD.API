@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FCManagement.DAL.IMPL
 {
@@ -19,42 +20,91 @@ namespace FCManagement.DAL.IMPL
             dbEntity = _dbContext.Set<TEntity>();
         }
 
-        public void Add(TEntity obj)//Insert
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            dbEntity.Add(obj);
+            return await dbEntity.ToListAsync();
         }
 
-        public void Delete(object manufactureId)
+        public async Task CreateAsync(TEntity entity)
         {
-            TEntity model = dbEntity.Find(manufactureId);
-            dbEntity.Remove(model);
-            _dbContext.SaveChanges();
+            await dbEntity.AddAsync(entity);
+            await _dbContext.SaveChangesAsync();
         }
 
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        public async Task<bool> DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var answer = await dbEntity.FindAsync(id);
+
+            if (answer == null)
+                return false;
+
+            dbEntity.Remove(answer);
+            await _dbContext.SaveChangesAsync();
+
+            return true;
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public async Task<bool> UpdateAsync(TEntity entity)
         {
-            return dbEntity.ToList();
+            var answer = _dbContext.Entry(entity).State;
+            if (answer != EntityState.Modified)
+                return false;
+
+            await _dbContext.SaveChangesAsync();
+            return true;
         }
 
-        public TEntity GetById(object manufactureId)//different find
+        public async Task<TEntity> GetByIdAsync(Guid id)
         {
-            return dbEntity.Find(manufactureId);
+            return await dbEntity.FindAsync(id);
         }
 
-        public void Save()
+        public async Task<int> CountAllAsync()
         {
-            _dbContext.SaveChanges();
+            return await dbEntity.CountAsync();
         }
 
-        public void Update(TEntity obj)
+        public async Task<IEnumerable<TEntity>> GetWhere(Expression<Func<TEntity, bool>> predicate)
         {
-            _dbContext.Entry(obj).State = EntityState.Modified;
-            _dbContext.SaveChanges();
+            return await dbEntity.Where(predicate).ToListAsync();
         }
+
+        //public void Add(TEntity obj)//Insert
+        //{
+        //    dbEntity.Add(obj);
+        //}
+
+        //public void Delete(object manufactureId)
+        //{
+        //    TEntity model = dbEntity.Find(manufactureId);
+        //    dbEntity.Remove(model);
+        //    _dbContext.SaveChanges();
+        //}
+
+        //public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public IEnumerable<TEntity> GetAll()
+        //{
+        //    return dbEntity.ToList();
+        //}
+
+        //public TEntity GetById(object manufactureId)//different find
+        //{
+        //    return dbEntity.Find(manufactureId);
+        //}
+
+        //public void Save()
+        //{
+        //    _dbContext.SaveChanges();
+        //}
+
+        //public void Update(TEntity obj)
+        //{
+        //    _dbContext.Entry(obj).State = EntityState.Modified;
+        //    _dbContext.SaveChanges();
+        //}
     }
 }

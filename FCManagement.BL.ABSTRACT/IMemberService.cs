@@ -2,15 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FCManagement.BL.ABSTRACT
 {
-    public interface IMemberService
+    public interface IMemberService : IGenericService<MemberDTO>
     {
-        void AddObject(MemberDTO member);
-        void DeleteObject(int id);
-        IEnumerable<MemberDTO> GetAll();
-        MemberDTO GetElementById(int id);
-        void UpdateObject(MemberDTO member);
+        
     }
 }
