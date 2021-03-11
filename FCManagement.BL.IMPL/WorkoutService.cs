@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FCManagement.BL.IMPL
 {
@@ -18,36 +19,41 @@ namespace FCManagement.BL.IMPL
             _workoutRepository = workoutRepository;
         }
 
-        public void AddObject(WorkoutDTO workout)
+        public async Task<int> CountAllAsync()
+        {
+            return await _workoutRepository.CountAllAsync();
+        }
+
+        public async Task CreateAsync(WorkoutDTO entity)
         {
             Workout dbEntity = new Workout()
             {
-                Name = workout.Name,
-                Description = workout.Description
+                Name = entity.Name,
+                Description = entity.Description
             };
 
-            _workoutRepository.Add(dbEntity);
-            _workoutRepository.Save();
+            await _workoutRepository.CreateAsync(dbEntity);
         }
 
-        public void DeleteObject(int id)
+        public async Task<bool> DeleteAsync(Guid id)
         {
-            _workoutRepository.Delete(id);
+            return await _workoutRepository.DeleteAsync(id);
         }
 
-        public IEnumerable<WorkoutDTO> GetAll()
+        public async Task<IEnumerable<WorkoutDTO>> GetAllAsync()
         {
-            return _workoutRepository.GetAll().Select(m => new WorkoutDTO()
-            {
-                WorkoutId = m.WorkoutId,
-                Name = m.Name,
-                Description = m.Description
-            });
+            return (await _workoutRepository.GetAllAsync()).Select
+                (m => new WorkoutDTO()
+                {
+                    WorkoutId = m.WorkoutId,
+                    Name = m.Name,
+                    Description = m.Description
+                });
         }
 
-        public WorkoutDTO GetElementById(int id)
+        public async Task<WorkoutDTO> GetByIdAsync(Guid id)
         {
-            Workout fromDb = _workoutRepository.GetById(id);
+            Workout fromDb = await _workoutRepository.GetByIdAsync(id);
 
             WorkoutDTO membershipDTO = new WorkoutDTO()
             {
@@ -58,15 +64,15 @@ namespace FCManagement.BL.IMPL
             return membershipDTO;
         }
 
-        public void UpdateObject(WorkoutDTO workout)
+        public async Task<bool> UpdateAsync(WorkoutDTO entity)
         {
-            Workout workoutBase = new Workout()
+            Workout memberBase = new Workout()
             {
-                WorkoutId = workout.WorkoutId,
-                Name = workout.Name,
-                Description = workout.Description
+                WorkoutId = entity.WorkoutId,
+                Name = entity.Name,
+                Description = entity.Description
             };
-            _workoutRepository.Update(workoutBase);
+            return await _workoutRepository.UpdateAsync(memberBase);
         }
     }
 }

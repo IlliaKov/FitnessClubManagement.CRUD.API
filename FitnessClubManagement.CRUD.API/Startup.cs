@@ -1,7 +1,10 @@
+using FCManagement.DAL.ABSTRACT;
+using FCManagement.DAL.IMPL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,9 +28,19 @@ namespace FitnessClubManagement.CRUD.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string connection = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<FitnessDbContext>(options =>
+                options.UseSqlServer(connection, p => { p.EnableRetryOnFailure(); p.MigrationsAssembly("FCManagement.DAL.IMPL"); }));
+
             services.AddControllers();
 
             services.AddSwaggerGen();
+
+            services.AddTransient<IInstructorRepository, InstructorRepository>();
+            services.AddTransient<IMemberRepository, MemberRepository>();
+            services.AddTransient<IMembershipRepository, MembershipRepository>();
+            services.AddTransient<IWorkoutRepository, WorkoutRepository>();
+            services.AddTransient<IWorkoutPlanRepository, WorkoutPlanRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

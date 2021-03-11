@@ -6,10 +6,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FCManagement.BL.IMPL
 {
-    public class WorkoutPlanService : IWorkoutplanService
+    public class WorkoutPlanService : IWorkoutPlanService
     {
         private readonly IWorkoutPlanRepository _workoutPlanRepository;
 
@@ -18,55 +19,60 @@ namespace FCManagement.BL.IMPL
             _workoutPlanRepository = workoutPlanRepository;
         }
 
-        public void AddObject(WorkoutPlanDTO workoutPlan)
+        public async Task<int> CountAllAsync()
+        {
+            return await _workoutPlanRepository.CountAllAsync();
+        }
+
+        public async Task CreateAsync(WorkoutPlanDTO entity)
         {
             WorkoutPlan dbEntity = new WorkoutPlan()
             {
-                WorkoutDate = workoutPlan.WorkoutDate,
-                WorkoutTime = workoutPlan.WorkoutTime
+                WorkoutDate = entity.WorkoutDate,
+                WorkoutTime = entity.WorkoutTime
             };
 
-            _workoutPlanRepository.Add(dbEntity);
-            _workoutPlanRepository.Save();
+            await _workoutPlanRepository.CreateAsync(dbEntity);
         }
 
-        public void DeleteObject(int id)
+        public async Task<bool> DeleteAsync(Guid id)
         {
-            _workoutPlanRepository.Delete(id);
+            return await _workoutPlanRepository.DeleteAsync(id);
         }
 
-        public IEnumerable<WorkoutPlanDTO> GetAll()
+        public async Task<IEnumerable<WorkoutPlanDTO>> GetAllAsync()
         {
-            return _workoutPlanRepository.GetAll().Select(m => new WorkoutPlanDTO()
-            {
-                WorkoutPlanId = m.WorkoutPlanId,
-                WorkoutDate = m.WorkoutDate,
-                WorkoutTime = m.WorkoutTime
-            });
+            return (await _workoutPlanRepository.GetAllAsync()).Select
+                (m => new WorkoutPlanDTO()
+                {
+                    WorkoutPlanId = m.WorkoutPlanId,
+                    WorkoutDate = m.WorkoutDate,
+                    WorkoutTime = m.WorkoutTime
+                });
         }
 
-        public WorkoutPlanDTO GetElementById(int id)
+        public async Task<WorkoutPlanDTO> GetByIdAsync(Guid id)
         {
-            WorkoutPlan fromDb = _workoutPlanRepository.GetById(id);
+            WorkoutPlan fromDb = await _workoutPlanRepository.GetByIdAsync(id);
 
-            WorkoutPlanDTO workoutPlanDTO = new WorkoutPlanDTO()
+            WorkoutPlanDTO membershipDTO = new WorkoutPlanDTO()
             {
                 WorkoutPlanId = fromDb.WorkoutPlanId,
                 WorkoutDate = fromDb.WorkoutDate,
                 WorkoutTime = fromDb.WorkoutTime
             };
-            return workoutPlanDTO;
+            return membershipDTO;
         }
 
-        public void UpdateObject(WorkoutPlanDTO workoutPlan)
+        public async Task<bool> UpdateAsync(WorkoutPlanDTO entity)
         {
-            WorkoutPlan workoutPlanBase = new WorkoutPlan()
+            WorkoutPlan memberBase = new WorkoutPlan()
             {
-                WorkoutPlanId = workoutPlan.WorkoutPlanId,
-                WorkoutDate = workoutPlan.WorkoutDate,
-                WorkoutTime = workoutPlan.WorkoutTime
+                WorkoutPlanId = entity.WorkoutPlanId,
+                WorkoutDate = entity.WorkoutDate,
+                WorkoutTime = entity.WorkoutTime
             };
-            _workoutPlanRepository.Update(workoutPlanBase);
+            return await _workoutPlanRepository.UpdateAsync(memberBase);
         }
     }
 }

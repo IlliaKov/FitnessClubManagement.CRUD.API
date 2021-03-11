@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FCManagement.BL.IMPL
 {
@@ -18,42 +19,47 @@ namespace FCManagement.BL.IMPL
             _instructorRepository = instructorRepository;
         }
 
-        public void AddObject(InstructorDTO instructor)
+        public async Task<int> CountAllAsync()
+        {
+            return await _instructorRepository.CountAllAsync();
+        }
+
+        public async Task CreateAsync(InstructorDTO entity)
         {
             Instructor dbEntity = new Instructor()
             {
-                FullName = instructor.FullName,
-                Gender = instructor.Gender,
-                Email = instructor.Email,
-                HomeAdress = instructor.HomeAdress,
-                PhoneNumber = instructor.PhoneNumber
+                FullName = entity.FullName,
+                Gender = entity.Gender,
+                Email = entity.Email,
+                HomeAddress = entity.HomeAddress,
+                PhoneNumber = entity.PhoneNumber
             };
 
-            _instructorRepository.Add(dbEntity);
-            _instructorRepository.Save();
+            await _instructorRepository.CreateAsync(dbEntity);
         }
 
-        public void DeleteObject(int id)
+        public async Task<bool> DeleteAsync(Guid id)
         {
-            _instructorRepository.Delete(id);
+            return await _instructorRepository.DeleteAsync(id);
         }
 
-        public IEnumerable<InstructorDTO> GetAll()
+        public async Task<IEnumerable<InstructorDTO>> GetAllAsync()
         {
-            return _instructorRepository.GetAll().Select(m => new InstructorDTO()
-            {
-                InstructorId = m.InstructorId,
-                FullName = m.FullName,
-                Gender = m.Gender,
-                Email = m.Email,
-                HomeAdress = m.HomeAdress,
-                PhoneNumber = m.PhoneNumber
-            });
+            return (await _instructorRepository.GetAllAsync()).Select
+                (m => new InstructorDTO()
+                {
+                    InstructorId = m.InstructorId,
+                    FullName = m.FullName,
+                    Gender = m.Gender,
+                    Email = m.Email,
+                    HomeAddress = m.HomeAddress,
+                    PhoneNumber = m.PhoneNumber
+                });
         }
 
-        public InstructorDTO GetElementById(int id)
+        public async Task<InstructorDTO> GetByIdAsync(Guid id)
         {
-            Instructor fromDb = _instructorRepository.GetById(id);
+            Instructor fromDb = await _instructorRepository.GetByIdAsync(id);
 
             InstructorDTO instructorDTO = new InstructorDTO()
             {
@@ -61,24 +67,24 @@ namespace FCManagement.BL.IMPL
                 FullName = fromDb.FullName,
                 Gender = fromDb.Gender,
                 Email = fromDb.Email,
-                HomeAdress = fromDb.HomeAdress,
+                HomeAddress = fromDb.HomeAddress,
                 PhoneNumber = fromDb.PhoneNumber
             };
             return instructorDTO;
         }
 
-        public void UpdateObject(InstructorDTO instructor)
+        public async Task<bool> UpdateAsync(InstructorDTO entity)
         {
-            Instructor instructorBase = new Instructor()
+            Instructor memberBase = new Instructor()
             {
-                InstructorId = instructor.InstructorId,
-                FullName = instructor.FullName,
-                Gender = instructor.Gender,
-                Email = instructor.Email,
-                HomeAdress = instructor.HomeAdress,
-                PhoneNumber = instructor.PhoneNumber
+                InstructorId = entity.InstructorId,
+                FullName = entity.FullName,
+                Gender = entity.Gender,
+                Email = entity.Email,
+                HomeAddress = entity.HomeAddress,
+                PhoneNumber = entity.PhoneNumber
             };
-            _instructorRepository.Update(instructorBase);
+            return await _instructorRepository.UpdateAsync(memberBase);
         }
     }
 }

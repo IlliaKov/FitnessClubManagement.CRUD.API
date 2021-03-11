@@ -5,12 +5,8 @@ using System.Text;
 
 namespace FCManagement.BL.ABSTRACT
 {
-    public interface IWorkoutplanService
+    public interface IWorkoutPlanService : IGenericService<WorkoutPlanDTO>
     {
-        void AddObject(WorkoutPlanDTO workoutPlan);
-        void DeleteObject(int id);
-        IEnumerable<WorkoutPlanDTO> GetAll();
-        WorkoutPlanDTO GetElementById(int id);
-        void UpdateObject(WorkoutPlanDTO workoutPlan);
+        
     }
 }

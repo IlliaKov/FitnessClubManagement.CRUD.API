@@ -19,27 +19,11 @@ namespace FCManagement.BL.IMPL
             _memberRepository = memberRepository;
         }
 
-        public Task<int> CountAllAsync()
+        public async Task<int> CountAllAsync()
         {
-            throw new NotImplementedException();
+            return await _memberRepository.CountAllAsync();
         }
-        //public void AddObject(MemberDTO member)
-        //{
-        //    Member dbEntity = new Member()
-        //    {
-        //        FullName = member.FullName,
-        //        Gender = member.Gender,
-        //        Age = member.Age,
-        //        Birthday = member.Birthday,
-        //        Email = member.Email,
-        //        HomeAddress = member.HomeAddress,
-        //        PhoneNumber = member.PhoneNumber,
-        //        JoiningDate = member.JoiningDate,
-        //        EndOfMembership = member.EndOfMembership
-        //    };
-        //    _memberRepository.Add(dbEntity);
-        //    _memberRepository.Save();
-        //}
+        
         public async Task CreateAsync(MemberDTO entity)
         {
             Member dbEntity = new Member()
@@ -65,7 +49,7 @@ namespace FCManagement.BL.IMPL
 
         public async Task<IEnumerable<MemberDTO>> GetAllAsync()
         { 
-            return await _memberRepository.GetAllAsync(). Select   
+            return (await _memberRepository.GetAllAsync()).Select   
                 (m => new MemberDTO()
             {
                 MemberId = m.MemberId,
@@ -81,14 +65,42 @@ namespace FCManagement.BL.IMPL
             });
         }
 
-        public Task<MemberDTO> GetByIdAsync(Guid id)
+        public async Task<MemberDTO> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            Member fromDb = await _memberRepository.GetByIdAsync(id);
+
+            MemberDTO memberDTO = new MemberDTO()
+            {
+                MemberId = fromDb.MemberId,
+                FullName = fromDb.FullName,
+                Gender = fromDb.Gender,
+                Age = fromDb.Age,
+                Birthday = fromDb.Birthday,
+                Email = fromDb.Email,
+                HomeAddress = fromDb.HomeAddress,
+                PhoneNumber = fromDb.PhoneNumber,
+                JoiningDate = fromDb.JoiningDate,
+                EndOfMembership = fromDb.EndOfMembership
+            };
+            return memberDTO;
         }
 
-        public Task<bool> UpdateAsync(MemberDTO entity)
+        public async Task<bool> UpdateAsync(MemberDTO entity)
         {
-            throw new NotImplementedException();
+            Member memberBase = new Member()
+            {
+                MemberId = entity.MemberId,
+                FullName = entity.FullName,
+                Gender = entity.Gender,
+                Age = entity.Age,
+                Birthday = entity.Birthday,
+                Email = entity.Email,
+                HomeAddress = entity.HomeAddress,
+                PhoneNumber = entity.PhoneNumber,
+                JoiningDate = entity.JoiningDate,
+                EndOfMembership = entity.EndOfMembership
+            };
+            return await _memberRepository.UpdateAsync(memberBase);
         }
 
         //public void AddObject(MemberDTO member)

@@ -5,12 +5,8 @@ using System.Text;
 
 namespace FCManagement.BL.ABSTRACT
 {
-    public interface IInstructorService
+    public interface IInstructorService : IGenericService<InstructorDTO>
     {
-        void AddObject(InstructorDTO trainer);
-        void DeleteObject(int id);
-        IEnumerable<InstructorDTO> GetAll();
-        InstructorDTO GetElementById(int id);
-        void UpdateObject(InstructorDTO trainer);
+
     }
 }

@@ -5,12 +5,8 @@ using System.Text;
 
 namespace FCManagement.BL.ABSTRACT
 {
-    public interface IMembershipService
+    public interface IMembershipService : IGenericService<MembershipDTO>
     {
-        void AddObject(MembershipDTO membership);
-        void DeleteObject(int id);
-        IEnumerable<MembershipDTO> GetAll();
-        MembershipDTO GetElementById(int id);
-        void UpdateObject(MembershipDTO membership);
+        
     }
 }

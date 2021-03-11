@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FCManagement.BL.IMPL
 {
@@ -18,38 +19,43 @@ namespace FCManagement.BL.IMPL
             _membershipRepository = membershipRepository;
         }
 
-        public void AddObject(MembershipDTO membership)
+        public async Task<int> CountAllAsync()
+        {
+            return await _membershipRepository.CountAllAsync();
+        }
+
+        public async Task CreateAsync(MembershipDTO entity)
         {
             Membership dbEntity = new Membership()
             {
-                Name = membership.Name,
-                Cost = membership.Cost,
-                MembershipPeriod = membership.MembershipPeriod
+                Name = entity.Name,
+                Cost = entity.Cost,
+                MembershipPeriod = entity.MembershipPeriod
             };
 
-            _membershipRepository.Add(dbEntity);
-            _membershipRepository.Save();
+            await _membershipRepository.CreateAsync(dbEntity);
         }
 
-        public void DeleteObject(int id)
+        public async Task<bool> DeleteAsync(Guid id)
         {
-            _membershipRepository.Delete(id);
+            return await _membershipRepository.DeleteAsync(id);
         }
 
-        public IEnumerable<MembershipDTO> GetAll()
+        public async Task<IEnumerable<MembershipDTO>> GetAllAsync()
         {
-            return _membershipRepository.GetAll().Select(m => new MembershipDTO()
-            {
-                MembershipId = m.MembershipId,
-                Name = m.Name,
-                Cost = m.Cost,
-                MembershipPeriod = m.MembershipPeriod
-            });
+            return (await _membershipRepository.GetAllAsync()).Select
+                (m => new MembershipDTO()
+                {
+                    MembershipId = m.MembershipId,
+                    Name = m.Name,
+                    Cost = m.Cost,
+                    MembershipPeriod = m.MembershipPeriod
+                });
         }
 
-        public MembershipDTO GetElementById(int id)
+        public async Task<MembershipDTO> GetByIdAsync(Guid id)
         {
-            Membership fromDb = _membershipRepository.GetById(id);
+            Membership fromDb = await _membershipRepository.GetByIdAsync(id);
 
             MembershipDTO membershipDTO = new MembershipDTO()
             {
@@ -61,16 +67,16 @@ namespace FCManagement.BL.IMPL
             return membershipDTO;
         }
 
-        public void UpdateObject(MembershipDTO membership)
+        public async Task<bool> UpdateAsync(MembershipDTO entity)
         {
-            Membership memberShipBase = new Membership()
+            Membership memberBase = new Membership()
             {
-                MembershipId = membership.MembershipId,
-                Name = membership.Name,
-                Cost = membership.Cost,
-                MembershipPeriod = membership.MembershipPeriod
+                MembershipId = entity.MembershipId,
+                Name = entity.Name,
+                Cost = entity.Cost,
+                MembershipPeriod = entity.MembershipPeriod
             };
-            _membershipRepository.Update(memberShipBase);
+            return await _membershipRepository.UpdateAsync(memberBase);
         }
     }
 }

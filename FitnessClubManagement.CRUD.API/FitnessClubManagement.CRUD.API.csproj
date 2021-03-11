@@ -16,6 +16,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FCManagement.BL.ABSTRACT\FCManagement.BL.ABSTRACT.csproj" />
+    <ProjectReference Include="..\FCManagement.BL.IMPL\FCManagement.BL.IMPL.csproj" />
+    <ProjectReference Include="..\FCManagement.DAL.IMPL\FCManagement.DAL.IMPL.csproj" />
+    <ProjectReference Include="..\FCManagement.Models\FCManagement.Models.csproj" />
   </ItemGroup>
 
 
