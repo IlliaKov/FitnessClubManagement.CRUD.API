@@ -15,7 +15,7 @@ namespace FCManagement.Entities
         public int Cost { get; set; }
         public int MembershipPeriod { get; set; }//max 178 - half a year
 
-        public int MemberId { get; set; }
+        public Guid MemberId { get; set; }
         [ForeignKey(nameof(MemberId))]
         public Member Member { get; set; }
     }

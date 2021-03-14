@@ -14,15 +14,15 @@ namespace FCManagement.Entities
         public DateTime WorkoutDate { get; set; }
         public int WorkoutTime { get; set; }
 
-        public int InstructorId { get; set; }
+        public Guid InstructorId { get; set; }
         [ForeignKey(nameof(InstructorId))]
         public Instructor Instructor { get; set; }
 
-        public int MemberId { get; set; }
+        public Guid MemberId { get; set; }
         [ForeignKey(nameof(MemberId))]
         public Member Member { get; set; }
 
-        public int WorkoutId { get; set; }
+        public Guid WorkoutId { get; set; }
         [ForeignKey(nameof(WorkoutId))]
         public Member Workout { get; set; }
     }

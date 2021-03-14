@@ -8,5 +8,6 @@ namespace FCManagement.Models
         public string Name { get; set; }
         public int Cost { get; set; }
         public int MembershipPeriod { get; set; }//max 178 - half a year
+        public Guid MemberId { get; set; }
     }
 }
