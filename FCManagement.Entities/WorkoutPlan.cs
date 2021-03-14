@@ -24,6 +24,6 @@ namespace FCManagement.Entities
 
         public Guid WorkoutId { get; set; }
         [ForeignKey(nameof(WorkoutId))]
-        public Member Workout { get; set; }
+        public Workout Workout { get; set; }
     }
 }

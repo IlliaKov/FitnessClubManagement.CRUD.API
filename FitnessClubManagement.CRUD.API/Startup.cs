@@ -1,3 +1,5 @@
+using FCManagement.BL.ABSTRACT;
+using FCManagement.BL.IMPL;
 using FCManagement.DAL.ABSTRACT;
 using FCManagement.DAL.IMPL;
 using Microsoft.AspNetCore.Builder;
@@ -41,6 +43,9 @@ namespace FitnessClubManagement.CRUD.API
             services.AddTransient<IMembershipRepository, MembershipRepository>();
             services.AddTransient<IWorkoutRepository, WorkoutRepository>();
             services.AddTransient<IWorkoutPlanRepository, WorkoutPlanRepository>();
+
+            services.AddTransient<IMemberService, MemberService>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
