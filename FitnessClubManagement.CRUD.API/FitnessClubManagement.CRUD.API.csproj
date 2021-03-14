@@ -31,5 +31,9 @@
     <ProjectReference Include="..\FCManagement.Models\FCManagement.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
 
 </Project>

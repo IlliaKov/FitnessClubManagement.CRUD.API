@@ -11,8 +11,15 @@ namespace FCManagement.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid WorkoutPlanId { get; set; }
+
+
+        [Required, Column(TypeName = "date")]
         public DateTime WorkoutDate { get; set; }
-        public int WorkoutTime { get; set; }
+
+
+        [Required]
+        public TimeSpan WorkoutTime { get; set; }
+
 
         public Guid InstructorId { get; set; }
         [ForeignKey(nameof(InstructorId))]

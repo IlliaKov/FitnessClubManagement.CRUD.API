@@ -46,7 +46,7 @@ namespace FitnessClubManagement.CRUD.API.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateAsync([FromBody]MemberDTO member)
+        public async Task<IActionResult> UpdateAsync([FromRoute] Guid id, [FromBody]MemberDTO member)//Errors
         {
             var updated = await _memberService.UpdateAsync(member);
 
