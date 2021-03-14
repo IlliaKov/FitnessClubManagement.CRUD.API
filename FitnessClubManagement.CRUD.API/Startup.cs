@@ -45,7 +45,10 @@ namespace FitnessClubManagement.CRUD.API
             services.AddTransient<IWorkoutPlanRepository, WorkoutPlanRepository>();
 
             services.AddTransient<IMemberService, MemberService>();
-            
+            services.AddTransient<IMembershipService, MembershipService>();
+            services.AddTransient<IInstructorService, InstructorService>();
+            services.AddTransient<IWorkoutService, WorkoutService>();
+            services.AddTransient<IWorkoutPlanService, WorkoutPlanService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
