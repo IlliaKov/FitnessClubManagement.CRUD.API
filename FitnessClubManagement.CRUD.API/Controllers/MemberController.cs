@@ -46,7 +46,7 @@ namespace FitnessClubManagement.CRUD.API.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateAsync(MemberDTO member)
+        public async Task<IActionResult> UpdateAsync([FromBody]MemberDTO member)
         {
             var updated = await _memberService.UpdateAsync(member);
 
@@ -55,7 +55,7 @@ namespace FitnessClubManagement.CRUD.API.Controllers
             return NotFound();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsync(Guid id)
         {
             var deleted = await _memberService.DeleteAsync(id);
