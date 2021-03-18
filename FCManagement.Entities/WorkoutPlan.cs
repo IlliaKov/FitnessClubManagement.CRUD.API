@@ -18,7 +18,7 @@ namespace FCManagement.Entities
 
 
         [Required]
-        public TimeSpan WorkoutTime { get; set; }
+        public int WorkoutTime { get; set; }
 
 
         public Guid InstructorId { get; set; }
