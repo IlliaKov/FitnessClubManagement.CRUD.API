@@ -75,16 +75,16 @@ namespace FCManagement.BL.IMPL
 
         public async Task<bool> UpdateAsync(InstructorDTO entity)
         {
-            Instructor memberBase = new Instructor()
-            {
-                InstructorId = entity.InstructorId,
-                FullName = entity.FullName,
-                Gender = entity.Gender,
-                Email = entity.Email,
-                HomeAddress = entity.HomeAddress,
-                PhoneNumber = entity.PhoneNumber
-            };
-            return await _instructorRepository.UpdateAsync(memberBase);
+            var instructor = await _instructorRepository.GetByIdAsync(entity.InstructorId);
+
+            instructor.InstructorId = entity.InstructorId;
+            instructor.FullName = entity.FullName;
+            instructor.Gender = entity.Gender;
+            instructor.Email = entity.Email;
+            instructor.HomeAddress = entity.HomeAddress;
+            instructor.PhoneNumber = entity.PhoneNumber;
+            
+            return await _instructorRepository.UpdateAsync(instructor);
         }
     }
 }

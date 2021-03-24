@@ -66,13 +66,13 @@ namespace FCManagement.BL.IMPL
 
         public async Task<bool> UpdateAsync(WorkoutDTO entity)
         {
-            Workout memberBase = new Workout()
-            {
-                WorkoutId = entity.WorkoutId,
-                Name = entity.Name,
-                Description = entity.Description
-            };
-            return await _workoutRepository.UpdateAsync(memberBase);
+            var workout = await _workoutRepository.GetByIdAsync(entity.WorkoutId);
+
+            workout.WorkoutId = entity.WorkoutId;
+            workout.Name = entity.Name;
+            workout.Description = entity.Description;
+           
+            return await _workoutRepository.UpdateAsync(workout);
         }
     }
 }

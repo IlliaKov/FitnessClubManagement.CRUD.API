@@ -69,14 +69,14 @@ namespace FCManagement.BL.IMPL
 
         public async Task<bool> UpdateAsync(MembershipDTO entity)
         {
-            Membership memberBase = new Membership()
-            {
-                MembershipId = entity.MembershipId,
-                Name = entity.Name,
-                Cost = entity.Cost,
-                MembershipPeriod = entity.MembershipPeriod
-            };
-            return await _membershipRepository.UpdateAsync(memberBase);
+            var membership = await _membershipRepository.GetByIdAsync(entity.MembershipId);
+
+            membership.MembershipId = entity.MembershipId;
+            membership.Name = entity.Name;
+            membership.Cost = entity.Cost;
+            membership.MembershipPeriod = entity.MembershipPeriod;
+            
+            return await _membershipRepository.UpdateAsync(membership);
         }
     }
 }
