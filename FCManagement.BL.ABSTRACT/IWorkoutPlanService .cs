@@ -5,8 +5,5 @@ using System.Text;
 
 namespace FCManagement.BL.ABSTRACT
 {
-    public interface IWorkoutPlanService : IGenericService<WorkoutPlanDTO>
-    {
-        
-    }
+    public interface IWorkoutPlanService : IGenericService<WorkoutPlanDTO>{}
 }

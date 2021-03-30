@@ -5,8 +5,5 @@ using System.Text;
 
 namespace FCManagement.BL.ABSTRACT
 {
-    public interface IMembershipService : IGenericService<MembershipDTO>
-    {
-        
-    }
+    public interface IMembershipService : IGenericService<MembershipDTO>{}
 }

@@ -6,8 +6,5 @@ using System.Threading.Tasks;
 
 namespace FCManagement.BL.ABSTRACT
 {
-    public interface IMemberService : IGenericService<MemberDTO>
-    {
-        
-    }
+    public interface IMemberService : IGenericService<MemberDTO>{}
 }

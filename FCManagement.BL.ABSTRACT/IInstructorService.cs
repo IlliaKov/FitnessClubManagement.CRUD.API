@@ -5,8 +5,5 @@ using System.Text;
 
 namespace FCManagement.BL.ABSTRACT
 {
-    public interface IInstructorService : IGenericService<InstructorDTO>
-    {
-
-    }
+    public interface IInstructorService : IGenericService<InstructorDTO>{}
 }
