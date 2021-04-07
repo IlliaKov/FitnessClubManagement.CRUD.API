@@ -20,9 +20,11 @@ namespace FitnessClubManagement.CRUD.API
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IWebHostEnvironment _currentEnvironment;
+        public Startup(IConfiguration configuration, IWebHostEnvironment currentEnvironment)
         {
             Configuration = configuration;
+            _currentEnvironment = currentEnvironment;
         }
 
         public IConfiguration Configuration { get; }
@@ -31,8 +33,19 @@ namespace FitnessClubManagement.CRUD.API
         public void ConfigureServices(IServiceCollection services)
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<FitnessDbContext>(options =>
-                options.UseSqlServer(connection, p => { p.EnableRetryOnFailure(); p.MigrationsAssembly("FCManagement.DAL.IMPL"); }));
+
+            if (_currentEnvironment.IsEnvironment("Testing"))
+            {
+                services.AddDbContext<FitnessDbContext>(options =>
+                    options.UseInMemoryDatabase(connection));
+            }
+            else
+            {
+                services.AddDbContext<FitnessDbContext>(options =>
+                    options.UseSqlServer(connection, p => { p.EnableRetryOnFailure(); p.MigrationsAssembly("FCManagement.DAL.IMPL"); }));
+            }
+
+            
 
             services.AddControllers();
 

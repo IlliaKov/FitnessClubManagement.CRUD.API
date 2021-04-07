@@ -28,6 +28,7 @@ namespace FCManagement.BL.IMPL
         {
             Workout dbEntity = new Workout()
             {
+                WorkoutId = entity.WorkoutId,
                 Name = entity.Name,
                 Description = entity.Description
             };

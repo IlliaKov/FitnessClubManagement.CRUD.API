@@ -28,6 +28,7 @@ namespace FCManagement.BL.IMPL
         {
             Membership dbEntity = new Membership()
             {
+                MembershipId = entity.MembershipId,
                 Name = entity.Name,
                 Cost = entity.Cost,
                 MembershipPeriod = entity.MembershipPeriod

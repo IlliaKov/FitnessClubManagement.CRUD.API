@@ -28,6 +28,7 @@ namespace FCManagement.BL.IMPL
         {
             Member dbEntity = new Member()
             {
+                MemberId = entity.MemberId,
                 FullName = entity.FullName,
                 Gender = entity.Gender,
                 Age = entity.Age,

@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FCManagement.Models", "FCMa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FCManagement.BL.IMPL", "FCManagement.BL.IMPL\FCManagement.BL.IMPL.csproj", "{70738762-1F60-4197-A96A-E60621612447}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCManagement.UnitTests", "FCManagement.UnitTests\FCManagement.UnitTests.csproj", "{01CE135E-BB17-4AE3-ACE8-B8B15821B584}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FCManagement.UnitTests", "FCManagement.UnitTests\FCManagement.UnitTests.csproj", "{01CE135E-BB17-4AE3-ACE8-B8B15821B584}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FCManagement.IntegrationTests", "FCManagement.IntegrationTests\FCManagement.IntegrationTests.csproj", "{834C11E3-695A-4B79-A4FE-113844898E01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{01CE135E-BB17-4AE3-ACE8-B8B15821B584}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01CE135E-BB17-4AE3-ACE8-B8B15821B584}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01CE135E-BB17-4AE3-ACE8-B8B15821B584}.Release|Any CPU.Build.0 = Release|Any CPU
+		{834C11E3-695A-4B79-A4FE-113844898E01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{834C11E3-695A-4B79-A4FE-113844898E01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{834C11E3-695A-4B79-A4FE-113844898E01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{834C11E3-695A-4B79-A4FE-113844898E01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

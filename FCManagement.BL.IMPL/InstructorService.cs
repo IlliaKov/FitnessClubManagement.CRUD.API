@@ -28,6 +28,7 @@ namespace FCManagement.BL.IMPL
         {
             Instructor dbEntity = new Instructor()
             {
+                InstructorId = entity.InstructorId,
                 FullName = entity.FullName,
                 Gender = entity.Gender,
                 Email = entity.Email,
