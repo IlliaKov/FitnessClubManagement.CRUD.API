@@ -37,7 +37,7 @@ namespace FitnessClubManagement.CRUD.API
             if (_currentEnvironment.IsEnvironment("Testing"))
             {
                 services.AddDbContext<FitnessDbContext>(options =>
-                    options.UseInMemoryDatabase(connection));
+                    options.UseInMemoryDatabase("Server=DESKTOP-O2OB7P9;Database=fitnessClubCRUDDb; Trusted_Connection=True;"));
             }
             else
             {

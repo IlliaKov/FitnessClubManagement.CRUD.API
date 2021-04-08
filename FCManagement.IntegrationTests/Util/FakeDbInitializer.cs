@@ -12,23 +12,25 @@ namespace FCManagement.IntegrationTests.Util
             var fixture = new Fixture();
 
             var instructors = new List<Instructor>();
-            //var questions = new List<Tests_CRUD_DAL.Entities.Question>();
-            //var tests = new List<Tests_CRUD_DAL.Entities.Test>();
-            //var testthemes = new List<Tests_CRUD_DAL.Entities.TestTheme>();
+            var members = new List<Member>();
+            var memberships = new List<Membership>();
+            var workouts = new List<Workout>();
+            var workoutPlans = new List<WorkoutPlan>();
 
             for (int i = 0; i < 10; i++)
             {
                 instructors.Add(fixture.Create<Instructor>());
-                //answers.Add(fixture.Build<Tests_CRUD_DAL.Entities.Answer>().Without(x => x.Question).Without(x => x.QuestionId).Create());
-                //questions.Add(fixture.Build<Tests_CRUD_DAL.Entities.Question>().Without(x => x.Answers).Without(x => x.Test).Without(x => x.TestId).Create());
-                //tests.Add(fixture.Build<Tests_CRUD_DAL.Entities.Test>().Without(x => x.Questions).Without(x => x.TestThemeId).Without(x => x.TestTheme).Create());
-                //testthemes.Add(fixture.Build<Tests_CRUD_DAL.Entities.TestTheme>().Without(x => x.Tests).Create());
+                members.Add(fixture.Create<Member>());
+                memberships.Add(fixture.Create<Membership>());
+                workouts.Add(fixture.Create<Workout>());
+                workoutPlans.Add(fixture.Create<WorkoutPlan>());
             }
 
             context.Instructors.AddRange(instructors);
-            //context.Questions.AddRange(questions);
-            //context.Tests.AddRange(tests);
-            //context.TestThemes.AddRange(testthemes);
+            context.Members.AddRange(members);
+            context.Memberships.AddRange(memberships);
+            context.Workouts.AddRange(workouts);
+            context.WorkoutPlans.AddRange(workoutPlans);
 
             context.SaveChanges();
         }
