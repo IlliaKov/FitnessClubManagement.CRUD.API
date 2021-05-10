@@ -16,12 +16,13 @@ namespace FCManagement.IntegrationTests
     {
         private BaseTestFixture _fixture;
 
+        //ініціалізація базової фікстури
         public MemberControllerTests()
         {
             _fixture = new BaseTestFixture();
         }
 
-        [Fact]
+        [Fact] //інтеграційний тест на перевірку повернення листа результату
         public async Task Get_ShouldReturnListResult()
         {
             // Act
@@ -33,7 +34,7 @@ namespace FCManagement.IntegrationTests
             Assert.NotEmpty(models);
         }
 
-        [Fact]
+        [Fact] //інтеграційний тест на перевірку створення сутності
         public async Task Post_ShouldCreateNewObject()
         {
             //Arrange
@@ -54,7 +55,7 @@ namespace FCManagement.IntegrationTests
 
         }
 
-        [Fact]
+        [Fact] //інтеграційний тест на перевірку оновлення сутності
         public async Task Put_ShouldUpdateExistingObject()
         {
             //Arrange
@@ -72,7 +73,7 @@ namespace FCManagement.IntegrationTests
             Assert.Contains(_fixture.DbContext.Members, x => x.FullName == "test2");
         }
 
-        [Fact]
+        [Fact] //інтеграційний тест на перевірку видалення вже створенної сутності 
         public async Task Delete_ShouldDeleteExistingObject()
         {
             //Arrange
@@ -91,7 +92,7 @@ namespace FCManagement.IntegrationTests
             Assert.DoesNotContain(_fixture.DbContext.Members, x => x.MemberId == entity.MemberId);
         }
 
-        [Fact]
+        [Fact] //інтеграційний тест на перевірку виклику по id сутності
         public async Task GetById_ShouldReturnExistingObject()
         {
             //Arrange
