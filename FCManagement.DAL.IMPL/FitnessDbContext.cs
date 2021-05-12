@@ -7,7 +7,10 @@ namespace FCManagement.DAL.IMPL
 {
     public class FitnessDbContext : IdentityDbContext
     {
-        public FitnessDbContext(DbContextOptions<FitnessDbContext> options):base(options){}
+        public FitnessDbContext(DbContextOptions<FitnessDbContext> options):base(options)
+        {
+            Database.EnsureCreated();
+        }
         public DbSet<Member> Members { get; set; }
         public DbSet<Membership> Memberships { get; set; }
         public DbSet<Instructor> Instructors { get; set; }
